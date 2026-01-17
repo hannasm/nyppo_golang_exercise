@@ -31,6 +31,12 @@ Some other things i had to implement include:
 Heuristic matching uses basic string comparisons, matching pre-determined plan names to identify PPO plans, and matching the predetermined region codes to identify regional pricing files. The data is stored in maps for efficient retrieval and are stored lowercase, more because that's a habit of how i would normally do things than because it's practically necesarry in this exercise.
 
 ## LLM Analysis
+Ollama is required, install it so that ollama is in your path and make sure you pull the llama3 model with
+
+`
+ollama pull llama3
+`
+
 I setup some prompts using `langchaingo` and `ollama` running locally to assess whether the plan names can be detected correctly with this technique. The first and most noteworthy answer is that yes, the ollama LLM seems to encode some interesting details such as considering "high performance", "super blue plus", etc... (that are not specifically branded with a "ppo" monniker), as ppo plans (at least thats what my quick research in google indicated). 
 
 It's also very clear that the LLM analysis is finnicky, slow, full of false positives and false negatives, etc... I chose to trust the output for this exercise but clearly in a business setting verification would be warranted for both false positives and false negatives...
