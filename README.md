@@ -2,6 +2,7 @@
 The basic idea behind my solution was to read the file using streaming parsers and extract the appropriate data using some basic heuristics. 
 
 The complexity comes from figuring out those basic heuristics, which followed a few steps:
+
     * Basic data analysis, read the file, print out some data in a format that was focused on the information i thought was relevant (ein, plan name, filename) while filtering out the fluff
         * Test out whether the AI / llm based approach was useful at all
         * Figure out the region codes on the pricing filenames
@@ -19,7 +20,8 @@ The complexity comes from figuring out those basic heuristics, which followed a 
         * throw the ones identified into a golang map as a basic heuristic for matching NY state pricing files
     * Using the same JSON parser, run heuristic matching against each pricing file entry and print out the ones that are both NY and PPO
 
-Some other things i had to implement include
+Some other things i had to implement include:
+
     * Basic command line argument parser (theres likely something better in golang but i just threw it together)
     * Performance tracker to measure runtime (requested in take-home assignment)
     * Emitting the data as a json event stream allows easier parsing by other json tools (powershell / jq.exe)
@@ -37,6 +39,7 @@ It does seem interesting that this would be a useful tool for identifying potent
 
 ## Production pipeline
 My assumptions for production would be:
+
     * New files need processed monthly
     * Database for storing plans and their status (such as new york and PPO) would be source of heuristics
     * Database for storing region codes mappings
